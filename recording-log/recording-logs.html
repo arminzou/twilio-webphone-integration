@@ -1,0 +1,503 @@
+<html>
+
+<head>
+    <title>Captorra Call Recordings</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://devops365.captorra.com//WebResources/cap_bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://devops365.captorra.com//WebResources/cap_recording_main.css">
+
+    <style>
+        #block-screen {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, .5);
+            transition: all .5s ease;
+            z-index: 1000;
+            display: none;
+        }
+
+        .lds-default {
+            display: inline-block;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            z-index: 1200;
+        }
+
+        .lds-default div {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            animation: lds-default 1.2s linear infinite;
+        }
+
+        .lds-default div:nth-child(1) {
+            animation-delay: 0s;
+            top: 29px;
+            left: 53px;
+        }
+
+        .lds-default div:nth-child(2) {
+            animation-delay: -0.1s;
+            top: 18px;
+            left: 50px;
+        }
+
+        .lds-default div:nth-child(3) {
+            animation-delay: -0.2s;
+            top: 9px;
+            left: 41px;
+        }
+
+        .lds-default div:nth-child(4) {
+            animation-delay: -0.3s;
+            top: 6px;
+            left: 29px;
+        }
+
+        .lds-default div:nth-child(5) {
+            animation-delay: -0.4s;
+            top: 9px;
+            left: 18px;
+        }
+
+        .lds-default div:nth-child(6) {
+            animation-delay: -0.5s;
+            top: 18px;
+            left: 9px;
+        }
+
+        .lds-default div:nth-child(7) {
+            animation-delay: -0.6s;
+            top: 29px;
+            left: 6px;
+        }
+
+        .lds-default div:nth-child(8) {
+            animation-delay: -0.7s;
+            top: 41px;
+            left: 9px;
+        }
+
+        .lds-default div:nth-child(9) {
+            animation-delay: -0.8s;
+            top: 50px;
+            left: 18px;
+        }
+
+        .lds-default div:nth-child(10) {
+            animation-delay: -0.9s;
+            top: 53px;
+            left: 29px;
+        }
+
+        .lds-default div:nth-child(11) {
+            animation-delay: -1s;
+            top: 50px;
+            left: 41px;
+        }
+
+        .lds-default div:nth-child(12) {
+            animation-delay: -1.1s;
+            top: 41px;
+            left: 50px;
+        }
+
+        @keyframes lds-default {
+
+            0%,
+            20%,
+            80%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <meta>
+</head>
+
+<body>
+
+    <div id="block-screen"></div>
+    <div class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <h1>Twilio Call Recording Log Table</h1>
+                <div class="table100 ver2 m-b-110">
+                    <table data-vertable="ver2" id="myTable">
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="column100 column1" data-column="column1">DATE</th>
+                                <th class="column100 column2" data-column="column2">SOURCE</th>
+                                <th class="column100 column3" data-column="column3">STATUS</th>
+                                <th class="column100 column4" data-column="column4">DURATION</th>
+                                <th class="column100 column5" data-column="column5">RECORDING</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!----Script Seciton ------------------------------------------------------------------------------------------------------------------------------>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js"></script>
+    <script>
+        /****************************************************************************
+         *   GLOBAL VARIABLES
+         *****************************************************************************/
+        var test = {
+            count: 0
+        };
+        var client = "armin";
+        var t0, t1;
+        var queryString = [];
+        var tableObj = {
+            dataHtml: `
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Month</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<button class="dropdown-item" type="button">January</button>
+						<button class="dropdown-item" type="button">February</button>
+						<button class="dropdown-item" type="button">March</button>
+						<button class="dropdown-item" type="button">April</button>
+						<button class="dropdown-item" type="button">May</button>
+						<button class="dropdown-item" type="button">June</button>
+						<button class="dropdown-item" type="button">July</button>
+						<button class="dropdown-item" type="button">August</button>
+						<button class="dropdown-item" type="button">September</button>
+						<button class="dropdown-item" type="button">October</button>
+						<button class="dropdown-item" type="button">November</button>
+						<button class="dropdown-item" type="button">December</button>
+					</div>
+		        </div>`
+        };
+
+        /****************************************************************************
+         *   MONTH DROPBOX HANDLERS
+         *****************************************************************************/
+        function newTableHtml(month) {
+            var tableHtml = `
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${month}</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<button class="dropdown-item" type="button">January</button>
+						<button class="dropdown-item" type="button">February</button>
+						<button class="dropdown-item" type="button">March</button>
+						<button class="dropdown-item" type="button">April</button>
+						<button class="dropdown-item" type="button">May</button>
+						<button class="dropdown-item" type="button">June</button>
+						<button class="dropdown-item" type="button">July</button>
+						<button class="dropdown-item" type="button">August</button>
+						<button class="dropdown-item" type="button">September</button>
+						<button class="dropdown-item" type="button">October</button>
+						<button class="dropdown-item" type="button">November</button>
+						<button class="dropdown-item" type="button">December</button>
+					</div>
+                </div>`
+            tableObj.dataHtml = tableHtml;
+        }
+
+        function addMonthDropdownListener(callback, startQuery, table) {
+            $(".dropdown-menu button").click(function () {
+                $("#dropdownMenu2").text($(this).text());
+                var monthsMap = new Map([
+                    ['January', '1'],
+                    ['February', '2'],
+                    ['March', '3'],
+                    ['April', '4'],
+                    ['May', '5'],
+                    ['June', '6'],
+                    ['July', '7'],
+                    ['August', '8'],
+                    ['September', '9'],
+                    ['October', '10'],
+                    ['November', '11'],
+                    ['December', '12']
+                ]);
+
+                var month = monthsMap.get(`${$(this).text()}`);
+                newTableHtml(`${$(this).text()}`);
+
+
+                table.clear();
+                table.destroy();
+
+                callback(parseInt(month), startQuery);
+            });
+        }
+
+        function setSearchDate(month = 0, callback) {
+            var dateObj = {};
+            var date = new Date();
+            var date = new Date(new Date());
+            var fromMonth = date.getMonth() + 1;
+            var toMonth = fromMonth + 1;
+            dateObj.fromYear = date.getFullYear();
+
+            if (month !== 0) {
+                fromMonth = month;
+                var toMonth = fromMonth + 1;
+            }
+
+            if (fromMonth < 10) {
+                dateObj.toYear = dateObj.fromYear;
+                dateObj.fromMonth = `0${fromMonth}`;
+                dateObj.toMonth = `0${toMonth}`;
+
+            } else if (fromMonth < 12) {
+                dateObj.toYear = dateObj.fromYear;
+                dateObj.fromMonth = fromMonth;
+                dateObj.toMonth = toMonth;
+            } else if (fromMonth === 12) {
+                dateObj.fromMonth = fromMonth;
+                dateObj.toYear = dateObj.fromYear + 1;
+                dateObj.toMonth = `01`;
+            }
+            callback(dateObj);
+        }
+
+        function executeQuery(date) {
+            // get querystring
+
+            queryString = getDataParam();
+
+            if (queryString) {
+                var firstPageUrl =
+                    `https://api.twilio.com/2010-04-01/Accounts/AC5c1ee6f908adc643add76e4d1c7be1d7/Calls.json?StartTime%3C=${date.toYear}-${date.toMonth}-01T00%3A00%3A00Z&StartTime%3E=${date.fromYear}-${date.fromMonth}-01T00%3A00%3A00Z&PageSize=100`;
+                getRecordList(queryString, firstPageUrl, searchNextPage);
+            }
+        }
+
+        /****************************************************************************
+         *   RECORD TABLE HANDLERS
+         *****************************************************************************/
+        function searchNextPage(pageObj) {
+            if (pageObj.nextPageUrl) {
+                newUrl = `https://api.twilio.com${pageObj.nextPageUrl}`;
+                getRecordList(queryString, newUrl, searchNextPage);
+            }
+        }
+
+        function getRecordList(queryString, pageUrl, callback) {
+            var pagination = {};
+
+            $.ajax({
+                url: pageUrl,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization",
+                        "Basic QUM1YzFlZTZmOTA4YWRjNjQzYWRkNzZlNGQxYzdiZTFkNzozYjI1MTMxNGNlOTU5MDI4YjRhNWZmYzUwZmY5NWExZg=="
+                    )
+                },
+                type: 'GET',
+                dataType: 'json',
+            }).done(function (data) {
+                console.log(data);
+                data.calls.forEach(element => {
+                    //var callTo = element.to.slice(2);
+                    //var callFrom = element.from.slice(2);
+                    var callTo = element.to;
+                    var callFrom = element.from;
+                    test.count++;
+
+
+                    if (queryString.length > 1) {
+                        if (callTo.includes(queryString[0]) || callFrom.includes(queryString[0]) ||
+                            callTo.includes(queryString[1]) || callFrom.includes(queryString[1]) ||
+                            callTo.includes(client) || callFrom.includes(client)) {
+                            showRecordData(element);
+                        }
+
+                    } else {
+                        if (callTo.includes(queryString[0]) || callTo.includes(client) ||
+                            callFrom.includes(queryString[0]) || callFrom.includes(client)) {
+                            showRecordData(element);
+                        }
+                    }
+                });
+
+                pagination.page = data.page;
+                pagination.firstPage = data.first_page_uri;
+                pagination.pageSize = data.page_size;
+
+                if (pagination.page != 0) {
+                    pagination.prevPageUrl = data.previous_page_uri;
+                }
+
+                pagination.nextPageUrl = data.next_page_uri;
+
+                callback(pagination);
+                // console.log(pagination);
+            })
+        }
+
+        function showRecordData(element) {
+            $.ajax({
+                url: `https://api.twilio.com${element.subresource_uris.recordings}`,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization",
+                        "Basic QUM1YzFlZTZmOTA4YWRjNjQzYWRkNzZlNGQxYzdiZTFkNzozYjI1MTMxNGNlOTU5MDI4YjRhNWZmYzUwZmY5NWExZg=="
+                    )
+                },
+                type: 'GET',
+                dataType: 'json',
+            }).done(function (data) {
+                console.log(data);
+                if (data.recordings.length != 0) {
+
+                    data.recordings.forEach(element => {
+                        console.log(`call_sid:` + element.call_sid);
+                        var recordUrl = `https://api.twilio.com${element.uri}`.replace(".json", ".mp3");
+                        $('#myTable tbody').append(`
+                            <tr class="row100">
+                                    <!-- <td class="column100 column1" data-column="column1">${element.date_created.slice(0, element.date_created.length-5)}</td> -->
+
+                                    <td class="column100 column1" data-column="column1">${moment(element.date_created.slice(0, element.date_created.length-5)).format('DD MMM YYYY, hh:mm:ss a, dddd')}</td>
+                                    <td class="column100 column2" data-column="column2">${element.source}</td>
+                                    <td class="column100 column3" data-column="column3">${element.status}</td>
+                                    <td class="column100 column4" data-column="column4">${element.duration} sec</td>
+                                    <td class="column100 column5" data-column="column5"><audio id="record-player" controls="controls" src=${recordUrl} type="audio/mpeg"></td>
+                            </tr>
+                        `);
+                    });
+                }
+            })
+        }
+        /****************************************************************************
+         *   URL QUERY STRING HANDLERS
+         *****************************************************************************/
+
+        function getDataParam() {
+            //Get the any query string parameters and load them into the vals array  
+            var vals = new Array();
+            var params = new Array();
+
+            if (location.search != "") {
+                vals = location.search.substr(1).split("&");
+                for (var i in vals) {
+                    vals[i] = vals[i].replace(/\+/g, " ").split("=");
+                }
+                //look for the parameter named 'data'  
+                var found = false;
+                for (var i in vals) {
+                    if (vals[i][0].toLowerCase() == "data") {
+                        params = parseDataValue(vals[i][1]);
+                        found = true;
+                        return params;
+                    }
+                }
+                if (!found) {
+                    console.log(`NO PARAMETERS.`);
+                }
+            } else {
+                console.log(`NO PARAMETERS.`);
+            }
+        }
+
+        function parseDataValue(datavalue) {
+            var numbers = [];
+            if (datavalue != "") {
+                var vals = new Array();
+                vals = decodeURIComponent(datavalue).split("&");
+                for (var i in vals) {
+                    vals[i] = vals[i].replace(/\+/g, " ").split("=");
+                    if (vals[i].length > 1) {
+                        numbers.push(vals[i][1]);
+                    }
+                }
+                return numbers;
+            }
+        }
+
+        /****************************************************************************
+         *   AJAX CALL CONTROLLER
+         *****************************************************************************/
+        $(document).ajaxStart(function () {
+            $('.lds-default').show();
+            $('#block-screen').show();
+            t0 = performance.now();
+        });
+
+        $(document).ajaxStop(function () {
+            $('.lds-default').hide();
+            $('#block-screen').hide();
+            t1 = performance.now();
+            console.log("Time taking " + (t1 - t0) + " milliseconds.");
+            var table = $('#myTable').DataTable({
+                "dom": '<"toolbar">lfrtip',
+                "columnDefs": [{
+                    "type": "datetime-moment",
+                    targets: 0
+                }],
+                "order": [
+                    [0, "desc"]
+                ]
+            });
+
+            $("div.toolbar").html(tableObj.dataHtml);
+            $('.dropdown-toggle').dropdown();
+
+            addMonthDropdownListener(setSearchDate, executeQuery, table);
+        });
+
+
+        /****************************************************************************
+         *   QUERYING CALL RECORDINGS BY DEFAULT
+         *****************************************************************************/
+        $(document).ready(function () {
+            setSearchDate(month = 0, executeQuery);
+        });
+    </script>
+
+</body>
+
+</html>
