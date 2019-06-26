@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://devops365.captorra.com//WebResources/cap_iframe.css">
+    <!-- <link rel="stylesheet" href="newWidget.css"> -->
+</head>
+
+<body>
+    <div class="widgetContainer" id="dialer">
+        <div class="accordion" id="cardAccordion">
+            <div class="card text-left" id="card-content">
+                <div class="card-header text-white bg-danger" id="cardHeading">
+                    <div class="row">
+                        <div class="middle-card mb-0 col-sm-auto">
+                        </div>
+                        <div class="card-title mb-0 col-sm-2">
+                            <div class="adaptor-status"></div>
+                            <a id="card-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                aria-controls="collapseOne">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="cardHeading" data-parent="#cardAccordion">
+
+                    <!-- NAV BAR -->
+                    <div class="nav-container">
+                        <!-- <nav class="NavigationBar">
+                            <ul>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                            </ul>
+                        </nav> -->
+                        <div class="NavigationBar">
+                            <div class="clientSection">
+                                <label>Twilio Client Name:</label>
+                                <input type="text" name="clientName" id="clientName" readonly="readonly">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body text-center">
+                        <div class="card-text" id="dialer-card-text">
+                            <div class="dialer-container">
+                                <div class="recipientInput-container">
+                                    <label class="RecipientsInput_label">To:</label>
+                                    <input class="receipientInput" style="border: none;" id="number">
+                                </div>
+                                <div class="dialerPanel-container">
+                                    <label>From:</label>
+                                    <input type="text" style="border: none;" id="callerNumber" readonly="readonly" />
+                                </div>
+                            </div>
+
+                            <div class="btn-group-vertical" role="group">
+                                <div class="btn-group">
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '1';">
+                                        1 <span class="numpad-letters">
+                                            <p>&nbsp;</p>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '2';">
+                                        2 <span class="numpad-letters">
+                                            <p>ABC</p>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '3';">
+                                        3 <span class="numpad-letters">
+                                            <p>DEF</p>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '4';">
+                                        4 <span class="numpad-letters">
+                                            <p>GHI</p>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '5';">
+                                        5 <span class="numpad-letters">
+                                            <p>JKL</p>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '6';">
+                                        6 <span class="numpad-letters">
+                                            <p>MNO</p>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '7';">
+                                        7 <span class="numpad-letters">
+                                            <p>PQRS</p>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '8';">
+                                        8 <span class="numpad-letters">
+                                            <p>TUV</p>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '9';">
+                                        9 <span class="numpad-letters">
+                                            <p>WXYZ</p>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '*';">
+                                        *
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '0';">
+                                        0 <span class="numpad-letters">
+                                            <p>+</p>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="numpad-button"
+                                        onclick="document.getElementById('number').value=document.getElementById('number').value + '#';">
+                                        #
+                                    </button>
+                                </div>
+                                <button type="button" class="call-button bg-success" onclick="" id="call-button">
+                                    <i class="fas fa-phone"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+</body>
+</html>

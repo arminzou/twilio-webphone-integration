@@ -1,0 +1,361 @@
+/* twilio red: #F22F46 */
+
+/* ----------------------------------------------- */
+/* BASIC SETUP */
+/* ----------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+}
+
+.widgetContainer {
+    z-index: 100;
+}
+
+.card {
+    width: 300px;
+}
+
+/* ----------------------------------------------- */
+/* REUSABLE COMPONENTS */
+/* ----------------------------------------------- */
+h3 {
+    position: relative;
+    top: 100px;
+}
+
+/* ----------------------------------------------- */
+/* CARD HEADER */
+/* ----------------------------------------------- */
+.row {
+    background: url(https://devops365.captorra.com//WebResources/cap_twilioHeadIcon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.adaptor-status {
+    height: 16px;
+    width: 16px;
+    background-color: #32AE31;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.card-title>a:before {
+    float: right !important;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f068";
+    padding-right: 5px;
+}
+
+.card-title>a.collapsed:before {
+    float: right !important;
+    content: "\f067";
+}
+
+.card-title>a:hover,
+.card-title>a:active,
+.card-title>a:focus {
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.middle-card {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* ----------------------------------------------- */
+/* CARD BODY --- NUMBER PAD */
+/* ----------------------------------------------- */
+.card-body {
+    height: 27.3rem;
+    padding: 0.5rem;
+}
+
+.card {
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.18);
+}
+
+.btn-group-vertical {
+    padding-top: 20px;
+}
+
+.numpad-button {
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    margin: 10px 20px;
+    padding: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.numpad-button:hover {
+    box-shadow: #506ce8 0 0 1px 1px;
+}
+
+.numpad-button:active {
+    background: #506ce8;
+    color: #fff;
+}
+
+.numpad-letters {
+    font-size: 8px;
+}
+
+.incoming-call-button {
+    background: #fff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5em;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 7px 20px;
+    padding: 0;
+}
+
+.call-button {
+    background: #fff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5em;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    position: relative;
+    margin: 10px auto;
+}
+
+.incoming-call-button:hover {
+    box-shadow: #fff 0 0 1px 1px;
+}
+
+.call-button:hover {
+    box-shadow: #fff 0 0 1px 1px;
+}
+
+button:focus {
+    outline: none;
+}
+
+.call-buttons {
+    /* position: relative; */
+    top: 120px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.card-text span {
+    display: block;
+    margin-bottom: 16px !important;
+}
+
+/* ----------------------------------------------- */
+/* CSS CHANGE */
+/* ----------------------------------------------- */
+.bg-danger {
+    background-color: #F22F46 !important;
+}
+
+.accordion>.card .card-header {
+    margin-bottom: unset;
+    padding: 5px 12px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.card {
+    border: unset;
+    border-radius: calc(4px - 1px) calc(4px - 1px) calc(4px - 1px) calc(4px - 1px);
+    -webkit-border-radius: calc(4px - 1px) calc(4px - 1px) calc(4px - 1px) calc(4px - 1px);
+    -moz-border-radius: calc(4px - 1px) calc(4px - 1px) calc(4px - 1px) calc(4px - 1px);
+    -ms-border-radius: calc(4px - 1px) calc(4px - 1px) calc(4px - 1px) calc(4px - 1px);
+    -o-border-radius: calc(4px - 1px) calc(4px - 1px) calc(4px - 1px) calc(4px - 1px);
+}
+
+.collapsing {
+    transition: width 0.6s;
+    -webkit-transition: width 0.6s;
+    -moz-transition: width 0.6s;
+    -ms-transition: width 0.6s;
+    -o-transition: width 0.6s;
+}
+
+/* ----------------------------------------------- */
+/* RECORD BUTTON */
+/* ----------------------------------------------- */
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+
+body {
+    overflow: hidden;
+}
+
+body .recordContainer #rec-btn {
+    display: none;
+}
+
+body .recordContainer #rec-btn+label:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -13px -14px;
+    ;
+    content: '';
+    -webkit-transform: translate(-6px, -6px);
+    -ms-transform: translate(-6px, -6px);
+    transform: translate(-6px, -6px);
+    border-radius: 50%;
+    border: 2px solid #393a3a;
+    cursor: pointer;
+}
+
+body .recordContainer #rec-btn+label:after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -9px -10px;
+    content: '';
+    border-radius: 50px;
+    box-shadow: 0px 0px 2px #C2181E;
+    background: #C2181E;
+    cursor: pointer;
+}
+
+body .recordContainer #rec-btn:checked+label:after {
+    -webkit-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+    -moz-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+    -o-animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+    animation: stop 0.5s infinite cubic-bezier(0.4, -0.9, 0.9, 1);
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px #C2181E;
+}
+
+
+/* ----------------------------------------------- */
+/* NAV BAR --- TO BE COMPLETE */
+/* ----------------------------------------------- */
+.nav-container {
+    width: 100%;
+    color: #FFFFFF;
+}
+
+.NavigationBar {
+    background-color: #233659;
+    margin: 0;
+    overflow: hidden;
+    height: 46px;
+}
+
+.clientSection {
+    display: table;
+    height: 46px;
+    line-height: 20px;
+    width: 100%;
+}
+
+.clientSection label {
+    margin-bottom: 0.5rem;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 70%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.clientSection input {
+    display: table-cell;
+    width: 95%;
+    background-color: inherit;
+    margin-top: 12px;
+    border: none;
+    color: white;
+}
+
+nav {
+    background-color: #233659;
+    margin: 0;
+    overflow: hidden;
+    height: 46px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    text-align: center
+}
+
+nav ul li {
+    display: inline-block;
+    list-style-type: none;
+}
+
+nav>ul>li>a {
+    color: white;
+    /* background-color: #333; */
+    display: block;
+    line-height: 2em;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+}
+
+/* ----------------------------------------------- */
+/* DIALER CONTAINER */
+/* ----------------------------------------------- */
+.dialer-container {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 5px 0;
+    padding: 0 20px 0px 20px;
+    border-bottom: #e3e3e3 1px solid;
+}
+
+.recipientInput-container {
+    display: block;
+    width: 100%;
+}
+
+.RecipientsInput_label {
+    float: left;
+}
+
+.dialerPanel-container {
+    display: block;
+    width: 100%;
+}
+
+.dialerPanel-container label {
+    float: left;
+}
